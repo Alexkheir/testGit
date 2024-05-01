@@ -2,16 +2,7 @@
 
 session_start();
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "testgit";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
@@ -26,16 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: home.php");
         exit();
         
-        // Display user information in a table
-        echo "<table border='1'>";
-        echo "<tr><th>Username</th><th>Password</th></tr>";
-        
-        // Output data of each row
-        while($row = $result->fetch_assoc()) {
-            echo "<tr><td>".$row["username"]."</td><td>".$row["password"]."</td></tr>";
-        }
-        
-        echo "</table>";
+
     } else {
         // User does not exist, display a message or take appropriate action
         echo "User does not exist.";

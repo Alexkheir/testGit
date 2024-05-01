@@ -9,7 +9,16 @@
     <?php
     session_start();
     if (isset($_SESSION['username'])) {
-        echo "<h1>Welcome, " . $_SESSION['username'] . "!</h1>";
+        echo "<table border='1'>";
+        echo "<tr><th>{$_SESSION['username']}</th><th>Password</th></tr>";
+        
+        // Output data of each row
+        while($row = $result->fetch_assoc()) {
+            echo "<tr><td>".$row["username"]."</td><td>".$row["password"]."</td></tr>";
+        }
+        
+        echo "</table>";
+        
     } else {
         header("Location: index.php"); // Redirect to login if not logged in
         exit();
